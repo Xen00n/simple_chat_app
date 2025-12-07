@@ -24,7 +24,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       await prefs.setString("userId", user.id);
       await prefs.setString("userName", user.name);
       token = await requestPermissionAndGetToken();
-      print(token);
+      // print(token);
       return true;
     } else {
       return false;
@@ -44,13 +44,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           TextButton(
             onPressed: () async {
               if (await login()) {
-                if (!mounted) return;
+                if (!context.mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Login Successful $token')),
                 );
                 GoRouter.of(context).go('/chatlist');
               } else {
-                if (!mounted) return;
+                if (!context.mounted) return;
                 ScaffoldMessenger.of(
                   context,
                 ).showSnackBar(const SnackBar(content: Text('Login Failed')));

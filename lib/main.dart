@@ -10,7 +10,7 @@ import 'package:simple_chat_app/firebase_options.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print('Background message: ${message.messageId}');
+  // print('Background message: ${message.messageId}');
 }
 
 Future<void> main() async {
@@ -19,7 +19,7 @@ Future<void> main() async {
 
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    print('Foreground message: ${message.notification?.title}');
+    // print('Foreground message: ${message.notification?.title}');
   });
   runApp(const ProviderScope(child: MyRouter()));
 }

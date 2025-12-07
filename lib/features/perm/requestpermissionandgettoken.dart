@@ -19,7 +19,7 @@ Future<String?> requestPermissionAndGetToken() async {
     return token;
     // Send to backend
   } else {
-    print("User declined or has not accepted permission");
+    // print("User declined or has not accepted permission");
     return "sad";
   }
 }

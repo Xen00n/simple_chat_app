@@ -27,7 +27,7 @@ class _ChatListPageState extends ConsumerState<ChatListPage> {
               await prefs.setString("userId", "");
               await prefs.setString("userName", "");
               ref.read(userProvider.notifier).state = null;
-              if (!mounted) return;
+              if (!context.mounted) return;
               GoRouter.of(context).go('/login');
             },
           ),
