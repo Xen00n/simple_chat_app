@@ -8,6 +8,7 @@ import 'package:simple_chat_app/features/auth/validationpage.dart';
 import 'package:simple_chat_app/features/chat/chatlistpage.dart';
 import 'package:simple_chat_app/firebase_options.dart';
 
+@pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Background message: ${message.messageId}');
 }
