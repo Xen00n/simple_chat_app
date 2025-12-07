@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_chat_app/data_model/user_model.dart';
 import 'package:simple_chat_app/data_provider/user_provider.dart';
@@ -47,7 +48,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Login Successful $token')),
                 );
-                // GoRouter.of(context).go('/chatlist');
+                GoRouter.of(context).go('/chatlist');
               } else {
                 if (!mounted) return;
                 ScaffoldMessenger.of(

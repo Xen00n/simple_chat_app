@@ -19,7 +19,6 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     print('Foreground message: ${message.notification?.title}');
-    // Show a SnackBar or in-app notification
   });
   runApp(const ProviderScope(child: MyRouter()));
 }
