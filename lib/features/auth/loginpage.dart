@@ -24,7 +24,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       await prefs.setString("userId", user.id);
       await prefs.setString("userName", user.name);
       token = await requestPermissionAndGetToken();
-      // print(token);
+      print(token);
       return true;
     } else {
       return false;

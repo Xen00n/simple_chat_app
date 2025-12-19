@@ -3,14 +3,16 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:simple_chat_app/features/auth/loginpage.dart';
 import 'package:simple_chat_app/features/auth/validationpage.dart';
 import 'package:simple_chat_app/features/chat/chatlistpage.dart';
+import 'package:simple_chat_app/features/chat/chatpage.dart';
 import 'package:simple_chat_app/firebase_options.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // print('Background message: ${message.messageId}');
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
 Future<void> main() async {
@@ -18,9 +20,7 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    // print('Foreground message: ${message.notification?.title}');
-  });
+
   runApp(const ProviderScope(child: MyRouter()));
 }
 
@@ -41,6 +41,11 @@ final _router = GoRouter(
       path: '/chatlist',
       builder: (context, state) => const ChatListPage(),
     ),
+    GoRoute(
+      name: "ChatPage",
+      path: '/chat/:chatId',
+      builder: (context, state) => ChatPage(id: state.pathParameters['chatId']),
+    ),
   ],
 );
 
@@ -49,9 +54,11 @@ class MyRouter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: _router,
-      debugShowCheckedModeBanner: false,
+    return OverlaySupport.global(
+      child: MaterialApp.router(
+        routerConfig: _router,
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }
