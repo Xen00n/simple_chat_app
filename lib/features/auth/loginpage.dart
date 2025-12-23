@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_chat_app/data_model/user_model.dart';
 import 'package:simple_chat_app/data_provider/user_provider.dart';
 import 'package:simple_chat_app/features/perm/requestpermissionandgettoken.dart';
+import 'dart:math';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -18,7 +19,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   String? token = "";
   Future<bool> login() async {
     if (username.isNotEmpty) {
-      final user = User(id: "thisisdummyid", name: "TesterHo");
+      var id = Random().nextInt(100000).toString();
+      final user = User(id: id, name: "TesterHo");
       ref.read(userProvider.notifier).state = user;
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString("userId", user.id);

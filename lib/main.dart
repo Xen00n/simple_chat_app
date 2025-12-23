@@ -44,7 +44,8 @@ final _router = GoRouter(
     GoRoute(
       name: "ChatPage",
       path: '/chat/:chatId',
-      builder: (context, state) => ChatPage(id: state.pathParameters['chatId']),
+      builder: (context, state) =>
+          ChatPage(chatId: state.pathParameters['chatId']),
     ),
   ],
 );

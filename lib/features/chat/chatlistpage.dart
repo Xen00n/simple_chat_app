@@ -69,7 +69,15 @@ class _ChatListPageState extends ConsumerState<ChatListPage> {
           ),
         ],
       ),
-      body: Center(child: Text('Welcome to the Chat List Page! $username')),
+      body: Column(
+        children: [
+          Center(child: Text('Welcome to the Chat List Page! $username')),
+          ElevatedButton(
+            onPressed: () => {GoRouter.of(context).go('/chat/sampleChatId')},
+            child: Text("chatpage"),
+          ),
+        ],
+      ),
     );
   }
 }
